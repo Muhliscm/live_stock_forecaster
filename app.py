@@ -20,7 +20,7 @@ st.title("Stock Price Prediction")
 
 if rad=="Home":
     
-    #st.image("images\\stock_market.jpg")
+    st.image("images//stock_market.jpg")
     st.header("Stock Visualization")
     symb = st.text_input("Enter Stock Symbol (eg: AAPL for Apple)")
     st.write("Add .ns at end if you want indian stocks (Eg:tatamotors.ns)")

@@ -10,6 +10,7 @@ import pandas as pd
 from tensorflow import keras
 #from components import extData
 
+st.set_page_config(layout="wide")
 
 sBar = st.sidebar
 rad = sBar.radio("Navigation", ["Home", "Compare Stock", "Forecast Stock"])

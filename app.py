@@ -51,7 +51,7 @@ if rad=="Home":
                 )
         fig.update_layout(xaxis_rangeslider_visible=False)
         fig.update_layout(title=name,yaxis_title='Price', xaxis_title="Date")  
-        st.plotly_chart(fig)
+        st.plotly_chart(fig, use_container_width= True)
         
     
 
@@ -108,7 +108,7 @@ if rad=="Compare Stock":
                 )
         fig1.update_layout(xaxis_rangeslider_visible=False)
         fig1.update_layout(title=name1,yaxis_title='Price', xaxis_title="Date")  
-        st.plotly_chart(fig1)
+        st.plotly_chart(fig1, use_container_width= True)
 
 
         df2 = tik2.history(period='max')
@@ -120,7 +120,7 @@ if rad=="Compare Stock":
                 )
         fig2.update_layout(xaxis_rangeslider_visible=False)
         fig2.update_layout(title=name2,yaxis_title='Price', xaxis_title="Date")  
-        st.plotly_chart(fig2)
+        st.plotly_chart(fig2, use_container_width= True)
 
 
 if rad=="Forecast Stock":

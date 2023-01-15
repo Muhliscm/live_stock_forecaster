@@ -3,7 +3,7 @@
 
 ### Predict your favorite stock price : [Click Here](https://share.streamlit.io/muhliscm/live_stock_forecaster/main/app.py) 
 
-<img src="./images/stock_market.jpg" width = "700" height="500">
+
 
 This project is done as a Portfolio Project
 
@@ -59,24 +59,4 @@ ceated 2 models using tensorflow with timestamp of 14 and 200 days. For this pro
 1. Data is collected using yfinance API
 2. Application script kept [here](https://github.com/Muhliscm/live_stock_forecaster/blob/main/app.py)
 
-## Featured Notebooks/Analysis/Deliverables
-
-#### Home Page:
-visualizing the stock
-<img src="https://github.com/Muhliscm/live_stock_forecaster/blob/main/images/visualisation.PNG">
-<img src="https://github.com/Muhliscm/live_stock_forecaster/blob/main/images/visualisation2.PNG">
-<img src="https://github.com/Muhliscm/live_stock_forecaster/blob/main/images/newplot.png">
-
-#### Stock Camparison
-<img src="https://github.com/Muhliscm/live_stock_forecaster/blob/main/images/comp1.PNG">
-<img src="https://github.com/Muhliscm/live_stock_forecaster/blob/main/images/comp2.PNG">
-<img src="https://github.com/Muhliscm/live_stock_forecaster/blob/main/images/comp3.PNG">
-<img src="https://github.com/Muhliscm/live_stock_forecaster/blob/main/images/comp4.PNG">
-
-#### Prediction
-<img src="https://github.com/Muhliscm/live_stock_forecaster/blob/main/images/pred1.PNG">
-<img src="https://github.com/Muhliscm/live_stock_forecaster/blob/main/images/pred2.PNG">
-<img src="https://github.com/Muhliscm/live_stock_forecaster/blob/main/images/pred3.PNG">
-<img src="https://github.com/Muhliscm/live_stock_forecaster/blob/main/images/pred4.PNG">
-<img src="https://github.com/Muhliscm/live_stock_forecaster/blob/main/images/pred5.PNG">
 

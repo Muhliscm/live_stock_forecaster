@@ -3,7 +3,7 @@
 
 ### Predict your favorite stock price : [Click Here](https://share.streamlit.io/muhliscm/live_stock_forecaster/main/app.py) 
 
-<img src="images/stock_market.jpg" width = "700" height="500">
+<img src=".images/stock_market.jpg" width = "700" height="500">
 
 This project is done as a Portfolio Project
 

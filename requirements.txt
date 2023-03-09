@@ -5,4 +5,5 @@ plotly
 scikit_learn
 streamlit
 tensorflow
-yfinance
+#yfinance
+yahooquery-2.3.0

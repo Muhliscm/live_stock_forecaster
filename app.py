@@ -173,7 +173,7 @@ if rad == "Forecast Stock":
                 y_pred_future = y_pred_future.flatten()
 
                 # creating dates for forecasted days
-                training_dates = pd.to_datetime(df["date"])
+                training_dates = df["date"]
                 forecast_period_date = pd.date_range(
                     list(training_dates)[-1], periods=days, freq="1d").tolist()
                 forecast_dates = []

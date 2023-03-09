@@ -6,4 +6,4 @@ scikit_learn
 streamlit
 tensorflow
 #yfinance
-yahooquery-2.3.0
+yahooquery

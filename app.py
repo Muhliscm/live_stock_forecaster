@@ -197,7 +197,9 @@ if rad == "Forecast Stock":
                 original = df[["date", "close"]]
                 past_date = datetime.now() - timedelta(back_days)
                 # filter_date = datetime.strftime(past_date.date(), "%Y-%m-%d")
-                shorted = original[original['date'] > past_date.date()]
+                original['date'] = pd.to_datetime(original['date'], utc=True)
+                shorted = original[original['date'].dt.date > past_date.date()]
+                #shorted = original[original['date'] > past_date.date()]
 
                 # ploting actual vs predicted
                 fig, ax = plt.subplots()

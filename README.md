@@ -46,7 +46,7 @@ Goal of the project is creating an application for predicting future stock price
 * Keras
 * Streamlit
 * Tensorflow
-* yfincan_API
+* yahoo query
 * jupyter notebook
 * etc. 
 

@@ -151,6 +151,7 @@ if rad == "Forecast Stock":
         tik, name = search_stocks(symbol)
         if tik and name:
             df = tik.history(period='max').reset_index()
+            # print(df.head())
 
             # fig, ax = plt.subplots()
             plt.suptitle(name, y=1.05, fontsize=20)
@@ -199,7 +200,7 @@ if rad == "Forecast Stock":
                 # filter_date = datetime.strftime(past_date.date(), "%Y-%m-%d")
                 original['date'] = pd.to_datetime(original['date'], utc=True)
                 shorted = original[original['date'].dt.date > past_date.date()]
-                #shorted = original[original['date'] > past_date.date()]
+                # shorted = original[original['date'] > past_date.date()]
 
                 # ploting actual vs predicted
                 fig, ax = plt.subplots()

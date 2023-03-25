@@ -28,12 +28,10 @@ def search_stocks(symbol):
 
 
 def plot_candlestick(tik, name):
-    try:
-        df = tik.history(period='max').reset_index()
-        st.write(df.head())
-    except Exception as ex:
-        df = ""
-        st.error(f">>>>>>>> exception{ex} in plot candles")
+
+    df = tik.history(period='max').reset_index()
+    st.write(df.head())
+
     if any(df):
         fig = go.Figure(data=[go.Candlestick(x=df['date'],
                                              open=df['open'],

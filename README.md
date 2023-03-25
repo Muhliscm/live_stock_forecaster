@@ -1,5 +1,7 @@
 # live_stock_forecaster
 
+<img src="https://github.com/Muhliscm/live_stock_forecaster/blob/main/images/stock_market.jpg" align=center width="600" height="400" ></img>
+
 
 ### Predict your favorite stock price : [Click Here](https://share.streamlit.io/muhliscm/live_stock_forecaster/main/app.py) 
 
@@ -7,7 +9,7 @@
 
 This project is done as a Portfolio Project
 
-#### -- Project Status: [Completed]
+#### -- Project Status: [Completed] - update yahoo stoped yfincance support - app shuting down
 
 ## Project Intro/Objective
 Goal of the project is creating an application for predicting future stock prices using LSTM.
@@ -60,3 +62,6 @@ ceated 2 models using tensorflow with timestamp of 14 and 200 days. For this pro
 2. Application script kept [here](https://github.com/Muhliscm/live_stock_forecaster/blob/main/app.py)
 
 
+## Stock Visuzlization
+<img src="https://github.com/Muhliscm/live_stock_forecaster/blob/main/images/visualisation.PNG" align=center width="600" height="400" ></img>
+<img src="https://github.com/Muhliscm/live_stock_forecaster/blob/main/images/visualisation2.PNG" align=center width="600" height="400" ></img>

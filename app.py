@@ -30,6 +30,7 @@ def search_stocks(symbol):
 def plot_candlestick(tik, name):
     try:
         df = tik.history(period='max').reset_index()
+        st.write(df.head())
     except Exception as ex:
         df = ""
         st.error(f">>>>>>>> exception{ex} in plot candles")
@@ -43,7 +44,8 @@ def plot_candlestick(tik, name):
         fig.update_layout(xaxis_rangeslider_visible=False)
         fig.update_layout(title=name, yaxis_title='Price',
                           xaxis_title="Date")
-        st.plotly_chart(fig, use_container_width=True)
+        # st.plotly_chart(fig, use_container_width=True)
+        fig.show()
 
 
 def prepare_training_data(df_for_training, n_past=14, n_future=1):

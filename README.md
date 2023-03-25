@@ -3,10 +3,10 @@
 <img src="https://github.com/Muhliscm/live_stock_forecaster/blob/main/images/stock_market.jpg" align=center width="600" height="400" ></img>
 
 
-
+[check your favourite stocks](https://muhliscm-live-stock-forecaster-app-muhlis-dev-h7sehi.streamlit.app/)
 This project is done as a Portfolio Project
 
-#### -- Project Status: [Completed] - update --  yahoo stoped yfincance support - app shuting down
+#### -- Project Status: [Completed] - update --  yahoo stoped yfincance support - if threre is any error please contact 
 
 ## Project Intro/Objective
 Goal of the project is creating an application for predicting future stock prices using LSTM.

@@ -3,7 +3,7 @@
 <img src="https://github.com/Muhliscm/live_stock_forecaster/blob/main/images/stock_market.jpg" align=center width="600" height="400" ></img>
 
 
-[check your favourite stocks](https://muhliscm-live-stock-forecaster-app-muhlis-dev-h7sehi.streamlit.app/)
+[Check your favourite stocks Here](https://muhliscm-live-stock-forecaster-app-muhlis-dev-h7sehi.streamlit.app/) <br>
 This project is done as a Portfolio Project
 
 #### -- Project Status: [Completed] - update --  yahoo stoped yfincance support - if threre is any error please contact 

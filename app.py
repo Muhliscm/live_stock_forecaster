@@ -2,7 +2,7 @@
 # import yfinance as yf
 import streamlit as st
 import sys
-# import plotly.graph_objects as go
+import plotly.graph_objects as go
 # import numpy as np
 # import matplotlib.pyplot as plt
 import datetime as datetime
@@ -13,43 +13,39 @@ from yahooquery import Ticker
 # from components import extData
 
 
-tik = Ticker('aapl')
-df = tik.history(period="max")
-st.write(df.head())
+def search_stocks(symbol):
+    # symbol = symbol.lower()
 
-# def search_stocks(symbol):
-#     # symbol = symbol.lower()
-#
-#     try:
-#         tik = Ticker(symbol)
-#         name = tik.quote_type.get(symbol, {}).get('shortName', "")
-#         st.write(name)
+    try:
+        tik = Ticker(symbol)
+        name = tik.quote_type.get(symbol, {}).get('shortName', "")
+        # st.write(name)
 
-#     except Exception as ex:
-#         tik, name = "", ""
-#         st.warning(">>>>>>>>>>>>> check your input")
-#         # st.write(
-#         #     "exception occurred when searching stock symbol", ex)
+    except Exception as ex:
+        tik, name = "", ""
+        st.warning(">>>>>>>>>>>>> check your input")
+        # st.write(
+        #     "exception occurred when searching stock symbol", ex)
 
-#     return (tik, name)
+    return (tik, name)
 
 
-# def plot_candlestick(tik, name):
-#     df = tik.history()
-#     st.write(df.head())
+def plot_candlestick(tik, name):
+    df = tik.history(period="max").reset_index()
+    st.write(df.head())
 
-#     # if any(df):
-#     #     fig = go.Figure(data=[go.Candlestick(x=df['date'],
-#     #                                          open=df['open'],
-#     #                                          high=df['high'],
-#     #                                          low=df['low'],
-#     #                                          close=df['close'])],
-#     #                     )
-#     #     fig.update_layout(xaxis_rangeslider_visible=False)
-#     #     fig.update_layout(title=name, yaxis_title='Price',
-#     #                       xaxis_title="Date")
-#     #     st.plotly_chart(fig, use_container_width=True)
-#     #     # fig.show()
+    if any(df):
+        fig = go.Figure(data=[go.Candlestick(x=df['date'],
+                                             open=df['open'],
+                                             high=df['high'],
+                                             low=df['low'],
+                                             close=df['close'])],
+                        )
+        fig.update_layout(xaxis_rangeslider_visible=False)
+        fig.update_layout(title=name, yaxis_title='Price',
+                          xaxis_title="Date")
+        st.plotly_chart(fig, use_container_width=True)
+        # fig.show()
 
 
 # def prepare_training_data(df_for_training, n_past=14, n_future=1):
@@ -92,32 +88,32 @@ st.write(df.head())
 #     st.pyplot(fig)
 
 
-# st.set_page_config(layout="wide")
+st.set_page_config(layout="wide")
 
-# sBar = st.sidebar
-# rad = sBar.radio("Navigation", ["Home", "Compare Stock", "Forecast Stock"])
+sBar = st.sidebar
+rad = sBar.radio("Navigation", ["Home", "Compare Stock", "Forecast Stock"])
 
-# st.title("Stock Price Prediction")
+st.title("Stock Price Prediction")
 
-# if rad == "Home":
+if rad == "Home":
 
-#     st.image("images//stock_market.jpg")
-#     st.header("Stock Visualization")
-#     symbol = st.text_input("Enter Stock Symbol (eg: AAPL for Apple)")
-#     st.write("Add .ns at end if you want indian stocks Eg: TATAMOTORS.NS")
-#     if not symbol:
-#         st.warning('Please Enter a symbol.')
-#         st.stop()
+    st.image("images//stock_market.jpg")
+    st.header("Stock Visualization")
+    symbol = st.text_input("Enter Stock Symbol (eg: AAPL for Apple)")
+    st.write("Add .ns at end if you want indian stocks Eg: TATAMOTORS.NS")
+    if not symbol:
+        st.warning('Please Enter a symbol.')
+        st.stop()
 
-#     if st.button("Search"):
-#         st.success('Thank you for input.')
+    if st.button("Search"):
+        st.success('Thank you for input.')
 
-#         tik, name = search_stocks(symbol)
+        tik, name = search_stocks(symbol)
 
-#         if tik and name:
-#             plot_candlestick(tik, name)
-#         else:
-#             st.error(">>>>>>>> error in input")
+        if tik and name:
+            plot_candlestick(tik, name)
+        else:
+            st.error(">>>>>>>> error in input")
 
 # if rad == "Compare Stock":
 #     st.header("Compare Stocks")

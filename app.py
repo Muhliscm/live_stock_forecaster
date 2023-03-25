@@ -27,24 +27,22 @@ def search_stocks(symbol):
     return (tik, name)
 
 
-def plot_candlestick(df, name):
-
+def plot_candlestick(tik, name):
+    df = tik.history(period='max')
     st.write(df.head())
-    try:
-        if any(df):
-            fig = go.Figure(data=[go.Candlestick(x=df['date'],
-                                                 open=df['open'],
-                                                 high=df['high'],
-                                                 low=df['low'],
-                                                 close=df['close'])],
-                            )
-            fig.update_layout(xaxis_rangeslider_visible=False)
-            fig.update_layout(title=name, yaxis_title='Price',
-                              xaxis_title="Date")
-            st.plotly_chart(fig, use_container_width=True)
-            # fig.show()
-    except Exception as ex:
-        st.error(f">>>>>>>>>>> exception {ex} occured in plot candles")
+
+    # if any(df):
+    #     fig = go.Figure(data=[go.Candlestick(x=df['date'],
+    #                                          open=df['open'],
+    #                                          high=df['high'],
+    #                                          low=df['low'],
+    #                                          close=df['close'])],
+    #                     )
+    #     fig.update_layout(xaxis_rangeslider_visible=False)
+    #     fig.update_layout(title=name, yaxis_title='Price',
+    #                       xaxis_title="Date")
+    #     st.plotly_chart(fig, use_container_width=True)
+    #     # fig.show()
 
 
 def prepare_training_data(df_for_training, n_past=14, n_future=1):
@@ -108,9 +106,9 @@ if rad == "Home":
         st.success('Thank you for input.')
 
         tik, name = search_stocks(symbol)
-        df = tik.history(period='max').reset_index()
+
         if tik and name:
-            plot_candlestick(df, name)
+            plot_candlestick(tik, name)
         else:
             st.error(">>>>>>>> error in input")
 

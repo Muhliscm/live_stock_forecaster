@@ -1,12 +1,10 @@
 
-import yfinance as yf
 import streamlit as st
 import plotly.graph_objects as go
 import numpy as np
 import matplotlib.pyplot as plt
 import datetime as datetime
 import pandas as pd
-from tensorflow import keras
 from yahooquery import Ticker
 from sklearn.preprocessing import StandardScaler
 

@@ -63,5 +63,14 @@ ceated 2 models using tensorflow with timestamp of 14 and 200 days. For this pro
 
 
 ## Stock Visuzlization
-<img src="https://github.com/Muhliscm/live_stock_forecaster/blob/main/images/visualisation.PNG" align=center width="600" height="400" ></img>
-<img src="https://github.com/Muhliscm/live_stock_forecaster/blob/main/images/visualisation2.PNG" align=center width="600" height="400" ></img>
+<img src="https://github.com/Muhliscm/live_stock_forecaster/blob/main/images/visualisation.PNG" align=center width="600" height="400" ></img><br>
+<img src="https://github.com/Muhliscm/live_stock_forecaster/blob/main/images/visualisation2.PNG" align=center width="600" height="400" ></img><br>
+<img src=https://github.com/Muhliscm/live_stock_forecaster/blob/main/images/newplot.png" align=center width="600" height="400" ></img>
+
+### Stock Comparison
+
+<img src=[https://github.com/Muhliscm/live_stock_forecaster/blob/main/images/newplot.png](https://github.com/Muhliscm/live_stock_forecaster/blob/main/images/comp1.PNG)" align=center width="600" height="400" ></img><br>
+<img src="" align=center width="600" height="400" ></img>
+
+
+

@@ -157,7 +157,7 @@ if rad == "Forecast Stock":
         st.write(name)
         if tik and name:
             df = tik.history(period='max').reset_index()
-            st.write(df.head())
+            # st.write(df.head())
             # print(df.head())
 
             # fig, ax = plt.subplots()

@@ -1,12 +1,12 @@
 
 # import yfinance as yf
 import streamlit as st
-import sys
+# import sys
 import plotly.graph_objects as go
-# import numpy as np
-# import matplotlib.pyplot as plt
+import numpy as np
+import matplotlib.pyplot as plt
 import datetime as datetime
-# import pandas as pd
+import pandas as pd
 # from tensorflow import keras
 from yahooquery import Ticker
 # from sklearn.preprocessing import StandardScaler
@@ -48,18 +48,18 @@ def plot_candlestick(tik, name):
         # fig.show()
 
 
-# def prepare_training_data(df_for_training, n_past=14, n_future=1):
-#     train_X = []
+def prepare_training_data(df_for_training, n_past=14, n_future=1):
+    train_X = []
 
-#     # creating data for prediction
-#     for i in range(len(df_for_training)-n_past-1):
-#         a = df_for_training[i:(i+n_past), 0]  # i=0, 0,1,2,3-----99   100
-#         train_X.append(a)
+    # creating data for prediction
+    for i in range(len(df_for_training)-n_past-1):
+        a = df_for_training[i:(i+n_past), 0]  # i=0, 0,1,2,3-----99   100
+        train_X.append(a)
 
-#     train_X = np.array(train_X)
-#     train_X = train_X.reshape(train_X.shape[0], train_X.shape[1], n_future)
-#     prepared_data = train_X[-1].reshape(-1, 1)
-#     return prepared_data
+    train_X = np.array(train_X)
+    train_X = train_X.reshape(train_X.shape[0], train_X.shape[1], n_future)
+    prepared_data = train_X[-1].reshape(-1, 1)
+    return prepared_data
 
 
 # @st.cache_resource
@@ -77,15 +77,15 @@ def plot_candlestick(tik, name):
 #     return li
 
 
-# def line_plot(x, y, x_label="Date", y_label="Price", title="Title"):
-#     fig, ax = plt.subplots()
-#     plt.suptitle(name, y=1.05, fontsize=20)
-#     ax.plot(x, y)
-#     plt.xlabel(x_label)
-#     plt.ylabel(y_label)
-#     plt.xticks(rotation=45)
-#     plt.title(title)
-#     st.pyplot(fig)
+def line_plot(x, y, x_label="Date", y_label="Price", title="Title"):
+    fig, ax = plt.subplots()
+    plt.suptitle(name, y=1.05, fontsize=20)
+    ax.plot(x, y)
+    plt.xlabel(x_label)
+    plt.ylabel(y_label)
+    plt.xticks(rotation=45)
+    plt.title(title)
+    st.pyplot(fig)
 
 
 st.set_page_config(layout="wide")
@@ -139,92 +139,92 @@ if rad == "Compare Stock":
         else:
             st.waring(">>>>>>>>>>> check your input")
 
-# if rad == "Forecast Stock":
+if rad == "Forecast Stock":
 
-#     st.header("Stock Price Prediction")
-#     st.write("For education purpose only")
-#     symbol = st.text_input("Enter Stock symbol (eg: AAPL for Apple)")
-#     st.write("Add .ns at end if you want indian stocks (Eg:Tatamotors.ns)")
+    st.header("Stock Price Prediction")
+    st.write("For education purpose only")
+    symbol = st.text_input("Enter Stock symbol (eg: AAPL for Apple)")
+    st.write("Add .ns at end if you want indian stocks (Eg:Tatamotors.ns)")
 
-#     days = st.selectbox("Number of days", [
-#         90, 180, 270, 360, 450, 540, 630, 720])
+    days = st.selectbox("Number of days", [
+        90, 180, 270, 360, 450, 540, 630, 720])
 
-#     if not symbol:
-#         st.warning('Please Enter a symbol.')
-#         st.stop()
+    if not symbol:
+        st.warning('Please Enter a symbol.')
+        st.stop()
 
-#     search = st.button("Predict")
+    search = st.button("Predict")
 
-#     if search and days:
-#         st.success('Thank you for input.')
-#         tik, name = search_stocks(symbol)
-#         if tik and name:
-#             df = tik.history(period='max').reset_index()
-#             # print(df.head())
+    if search and days:
+        st.success('Thank you for input.')
+        tik, name = search_stocks(symbol)
+        if tik and name:
+            df = tik.history(period='max').reset_index()
+            # print(df.head())
 
-#             # fig, ax = plt.subplots()
-#             plt.suptitle(name, y=1.05, fontsize=20)
-#             line_plot(df['date'], df["close"], title="Current stock price")
+            # fig, ax = plt.subplots()
+            plt.suptitle(name, y=1.05, fontsize=20)
+            line_plot(df['date'], df["close"], title="Current stock price")
 
-#             df_for_training = df[["close"]].values
-#             prepared_data = prepare_training_data(df_for_training)
-#             # st.write(prepared_data)
+        #     df_for_training = df[["close"]].values
+        #     prepared_data = prepare_training_data(df_for_training)
+        #     # st.write(prepared_data)
 
-#             if not prepared_data.any():
-#                 st.warning(">>>>>>>>>>> prepared data is empty")
-#             else:
+        #     if not prepared_data.any():
+        #         st.warning(">>>>>>>>>>> prepared data is empty")
+        #     else:
 
-#                 sc = StandardScaler()
-#                 prepared_data = sc.fit_transform(prepared_data)
-#                 li = pred_and_load(days, prepared_data)
+        #         sc = StandardScaler()
+        #         prepared_data = sc.fit_transform(prepared_data)
+        #         li = pred_and_load(days, prepared_data)
 
-#                 arr = np.array(li)
-#                 y_pred_future = sc.inverse_transform(arr)
-#                 y_pred_future = y_pred_future.flatten()
+        #         arr = np.array(li)
+        #         y_pred_future = sc.inverse_transform(arr)
+        #         y_pred_future = y_pred_future.flatten()
 
-#                 # creating dates for forecasted days
-#                 training_dates = df["date"]
-#                 forecast_period_date = pd.date_range(
-#                     list(training_dates)[-1], periods=days, freq="1d").tolist()
-#                 forecast_dates = []
-#                 for time_i in forecast_period_date:
-#                     forecast_dates.append(time_i.date())
+        #         # creating dates for forecasted days
+        #         training_dates = df["date"]
+        #         forecast_period_date = pd.date_range(
+        #             list(training_dates)[-1], periods=days, freq="1d").tolist()
+        #         forecast_dates = []
+        #         for time_i in forecast_period_date:
+        #             forecast_dates.append(time_i.date())
 
-#                 # creating dataset for future prediction
-#                 df_future = pd.DataFrame(
-#                     {"Date": np.array(forecast_dates), "Close": y_pred_future})
+        #         # creating dataset for future prediction
+        #         df_future = pd.DataFrame(
+        #             {"Date": np.array(forecast_dates), "Close": y_pred_future})
 
-#                 title = f"Predicted Stock Price for {days} Days"
-#                 line_plot(forecast_dates,  y_pred_future, title=title)
+        #         title = f"Predicted Stock Price for {days} Days"
+        #         line_plot(forecast_dates,  y_pred_future, title=title)
 
-#                 # creating filter for dates
-#                 from datetime import datetime, timedelta
-#                 if days < 365:
-#                     back_days = 730
-#                 else:
-#                     back_days = 1460
+        #         # creating filter for dates
+        #         from datetime import datetime, timedelta
+        #         if days < 365:
+        #             back_days = 730
+        #         else:
+        #             back_days = 1460
 
-#                 original = df[["date", "close"]]
-#                 past_date = datetime.now() - timedelta(back_days)
-#                 # filter_date = datetime.strftime(past_date.date(), "%Y-%m-%d")
-#                 original['date'] = pd.to_datetime(original['date'], utc=True)
-#                 shorted = original[original['date'].dt.date > past_date.date()]
-#                 # shorted = original[original['date'] > past_date.date()]
+        #         original = df[["date", "close"]]
+        #         past_date = datetime.now() - timedelta(back_days)
+        #         # filter_date = datetime.strftime(past_date.date(), "%Y-%m-%d")
+        #         original['date'] = pd.to_datetime(original['date'], utc=True)
+        #         shorted = original[original['date'].dt.date > past_date.date()]
+        #         # shorted = original[original['date'] > past_date.date()]
 
-#                 # ploting actual vs predicted
-#                 fig, ax = plt.subplots()
-#                 plt.title("Actual Price Vs Predicted Price")
-#                 ax.plot(shorted['date'], shorted['close'], label='Actual')
-#                 plt.plot(df_future["Date"],
-#                          df_future["Close"], label="Predicted")
-#                 plt.xticks(rotation=45)
-#                 plt.xlabel("Date")
-#                 plt.ylabel("Price")
-#                 plt.legend()
-#                 st.pyplot(fig)
+        #         # ploting actual vs predicted
+        #         fig, ax = plt.subplots()
+        #         plt.title("Actual Price Vs Predicted Price")
+        #         ax.plot(shorted['date'], shorted['close'], label='Actual')
+        #         plt.plot(df_future["Date"],
+        #                  df_future["Close"], label="Predicted")
+        #         plt.xticks(rotation=45)
+        #         plt.xlabel("Date")
+        #         plt.ylabel("Price")
+        #         plt.legend()
+        #         st.pyplot(fig)
 
-#                 # printing dataframe
-#                 st.header("Prediction data")
-#                 st.dataframe(df_future)
-#         else:
-#             st.warning(">>>>>>>>>>>>>> check your input")
+        #         # printing dataframe
+        #         st.header("Prediction data")
+        #         st.dataframe(df_future)
+        # else:
+        #     st.warning(">>>>>>>>>>>>>> check your input")

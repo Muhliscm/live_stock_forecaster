@@ -14,10 +14,12 @@ from sklearn.preprocessing import StandardScaler
 
 
 def search_stocks(symbol):
-    symbol = symbol.lower()
+    # symbol = symbol.lower()
+    symbol = "aapl"
     try:
-        tik = Ticker(symbol, asynchronous=True)
-        name = tik.quote_type.get(symbol, {}).get('shortName')
+        tik = Ticker(symbol)
+        name = tik.quote_type.get(symbol, {}).get('shortName', "")
+        st.write(name)
 
     except Exception as ex:
         tik, name = "", ""

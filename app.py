@@ -3,7 +3,7 @@
 import streamlit as st
 import plotly.graph_objects as go
 import numpy as np
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 import datetime as datetime
 import pandas as pd
 # from tensorflow import keras
@@ -76,15 +76,15 @@ def prepare_training_data(df_for_training, n_past=14, n_future=1):
 #     return li
 
 
-def line_plot(x, y, x_label="Date", y_label="Price", title="Title"):
-    fig, ax = plt.subplots()
-    plt.suptitle(name, y=1.05, fontsize=20)
-    ax.plot(x, y)
-    plt.xlabel(x_label)
-    plt.ylabel(y_label)
-    plt.xticks(rotation=45)
-    plt.title(title)
-    st.pyplot(fig)
+# def line_plot(x, y, x_label="Date", y_label="Price", title="Title"):
+#     fig, ax = plt.subplots()
+#     plt.suptitle(name, y=1.05, fontsize=20)
+#     ax.plot(x, y)
+#     plt.xlabel(x_label)
+#     plt.ylabel(y_label)
+#     plt.xticks(rotation=45)
+#     plt.title(title)
+#     st.pyplot(fig)
 
 
 st.set_page_config(layout="wide")
@@ -159,11 +159,12 @@ if rad == "Forecast Stock":
         tik, name = search_stocks(symbol)
         if tik and name:
             df = tik.history(period='max').reset_index()
+            st.write(df.head())
             # print(df.head())
 
             # fig, ax = plt.subplots()
-            plt.suptitle(name, y=1.05, fontsize=20)
-            line_plot(df['date'], df["close"], title="Current stock price")
+            # plt.suptitle(name, y=1.05, fontsize=20)
+            # line_plot(df['date'], df["close"], title="Current stock price")
 
         #     df_for_training = df[["close"]].values
         #     prepared_data = prepare_training_data(df_for_training)

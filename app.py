@@ -156,7 +156,8 @@ if rad == "Forecast Stock":
 
     if search and days:
         st.success('Thank you for input.')
-        tik, name = search_stocks(symbol)
+        tik, name = search_stocks(symbol.lower())
+        st.write(name)
         if tik and name:
             df = tik.history(period='max').reset_index()
             st.write(df.head())

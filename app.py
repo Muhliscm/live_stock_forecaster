@@ -1,7 +1,6 @@
 
 # import yfinance as yf
 import streamlit as st
-# import sys
 import plotly.graph_objects as go
 import numpy as np
 import matplotlib.pyplot as plt

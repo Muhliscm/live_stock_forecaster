@@ -28,7 +28,7 @@ def search_stocks(symbol):
 
 def plot_candlestick(tik, name):
     df = tik.history(period="max").reset_index()
-    st.write(df.head())
+    # st.write(df.head())
 
     if any(df):
         fig = go.Figure(data=[go.Candlestick(x=df['date'],

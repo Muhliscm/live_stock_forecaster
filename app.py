@@ -1,15 +1,14 @@
 
-# import yfinance as yf
+import yfinance as yf
 import streamlit as st
 import plotly.graph_objects as go
 import numpy as np
 import matplotlib.pyplot as plt
 import datetime as datetime
 import pandas as pd
-# from tensorflow import keras
+from tensorflow import keras
 from yahooquery import Ticker
-# from sklearn.preprocessing import StandardScaler
-# from components import extData
+from sklearn.preprocessing import StandardScaler
 
 
 def search_stocks(symbol):
@@ -61,19 +60,19 @@ def prepare_training_data(df_for_training, n_past=14, n_future=1):
     return prepared_data
 
 
-# @st.cache_resource
-# def pred_and_load(days, temp_for, n_past=14):
-#     from tensorflow import keras
-#     timestamp = n_past
-#     model = keras.models.load_model("de_lstm_14days.h5")
-#     li = []
-#     for i in range(days):
-#         x_input_for = temp_for.reshape(1, temp_for.shape[0], 1)
-#         pred_for = model.predict(x_input_for).flatten()
-#         li.append(pred_for)
-#         next_for = np.append(temp_for, pred_for)
-#         temp_for = next_for[-timestamp:]
-#     return li
+@st.cache_resource
+def pred_and_load(days, temp_for, n_past=14):
+    from tensorflow import keras
+    timestamp = n_past
+    model = keras.models.load_model("de_lstm_14days.h5")
+    li = []
+    for i in range(days):
+        x_input_for = temp_for.reshape(1, temp_for.shape[0], 1)
+        pred_for = model.predict(x_input_for).flatten()
+        li.append(pred_for)
+        next_for = np.append(temp_for, pred_for)
+        temp_for = next_for[-timestamp:]
+    return li
 
 
 def line_plot(x, y, x_label="Date", y_label="Price", title="Title"):
@@ -167,65 +166,65 @@ if rad == "Forecast Stock":
             plt.suptitle(name, y=1.05, fontsize=20)
             line_plot(df['date'], df["close"], title="Current stock price")
 
-        #     df_for_training = df[["close"]].values
-        #     prepared_data = prepare_training_data(df_for_training)
-        #     # st.write(prepared_data)
+            df_for_training = df[["close"]].values
+            prepared_data = prepare_training_data(df_for_training)
+            # st.write(prepared_data)
 
-        #     if not prepared_data.any():
-        #         st.warning(">>>>>>>>>>> prepared data is empty")
-        #     else:
+            if not prepared_data.any():
+                st.warning(">>>>>>>>>>> prepared data is empty")
+            else:
 
-        #         sc = StandardScaler()
-        #         prepared_data = sc.fit_transform(prepared_data)
-        #         li = pred_and_load(days, prepared_data)
+                sc = StandardScaler()
+                prepared_data = sc.fit_transform(prepared_data)
+                li = pred_and_load(days, prepared_data)
 
-        #         arr = np.array(li)
-        #         y_pred_future = sc.inverse_transform(arr)
-        #         y_pred_future = y_pred_future.flatten()
+                arr = np.array(li)
+                y_pred_future = sc.inverse_transform(arr)
+                y_pred_future = y_pred_future.flatten()
 
-        #         # creating dates for forecasted days
-        #         training_dates = df["date"]
-        #         forecast_period_date = pd.date_range(
-        #             list(training_dates)[-1], periods=days, freq="1d").tolist()
-        #         forecast_dates = []
-        #         for time_i in forecast_period_date:
-        #             forecast_dates.append(time_i.date())
+                # creating dates for forecasted days
+                training_dates = df["date"]
+                forecast_period_date = pd.date_range(
+                    list(training_dates)[-1], periods=days, freq="1d").tolist()
+                forecast_dates = []
+                for time_i in forecast_period_date:
+                    forecast_dates.append(time_i.date())
 
-        #         # creating dataset for future prediction
-        #         df_future = pd.DataFrame(
-        #             {"Date": np.array(forecast_dates), "Close": y_pred_future})
+                # creating dataset for future prediction
+                df_future = pd.DataFrame(
+                    {"Date": np.array(forecast_dates), "Close": y_pred_future})
 
-        #         title = f"Predicted Stock Price for {days} Days"
-        #         line_plot(forecast_dates,  y_pred_future, title=title)
+                title = f"Predicted Stock Price for {days} Days"
+                line_plot(forecast_dates,  y_pred_future, title=title)
 
-        #         # creating filter for dates
-        #         from datetime import datetime, timedelta
-        #         if days < 365:
-        #             back_days = 730
-        #         else:
-        #             back_days = 1460
+                # creating filter for dates
+                from datetime import datetime, timedelta
+                if days < 365:
+                    back_days = 730
+                else:
+                    back_days = 1460
 
-        #         original = df[["date", "close"]]
-        #         past_date = datetime.now() - timedelta(back_days)
-        #         # filter_date = datetime.strftime(past_date.date(), "%Y-%m-%d")
-        #         original['date'] = pd.to_datetime(original['date'], utc=True)
-        #         shorted = original[original['date'].dt.date > past_date.date()]
-        #         # shorted = original[original['date'] > past_date.date()]
+                original = df[["date", "close"]]
+                past_date = datetime.now() - timedelta(back_days)
+                # filter_date = datetime.strftime(past_date.date(), "%Y-%m-%d")
+                original['date'] = pd.to_datetime(original['date'], utc=True)
+                shorted = original[original['date'].dt.date > past_date.date()]
+                # shorted = original[original['date'] > past_date.date()]
 
-        #         # ploting actual vs predicted
-        #         fig, ax = plt.subplots()
-        #         plt.title("Actual Price Vs Predicted Price")
-        #         ax.plot(shorted['date'], shorted['close'], label='Actual')
-        #         plt.plot(df_future["Date"],
-        #                  df_future["Close"], label="Predicted")
-        #         plt.xticks(rotation=45)
-        #         plt.xlabel("Date")
-        #         plt.ylabel("Price")
-        #         plt.legend()
-        #         st.pyplot(fig)
+                # ploting actual vs predicted
+                fig, ax = plt.subplots()
+                plt.title("Actual Price Vs Predicted Price")
+                ax.plot(shorted['date'], shorted['close'], label='Actual')
+                plt.plot(df_future["Date"],
+                         df_future["Close"], label="Predicted")
+                plt.xticks(rotation=45)
+                plt.xlabel("Date")
+                plt.ylabel("Price")
+                plt.legend()
+                st.pyplot(fig)
 
-        #         # printing dataframe
-        #         st.header("Prediction data")
-        #         st.dataframe(df_future)
-        # else:
-        #     st.warning(">>>>>>>>>>>>>> check your input")
+                # printing dataframe
+                st.header("Prediction data")
+                st.dataframe(df_future)
+        else:
+            st.warning(">>>>>>>>>>>>>> check your input")

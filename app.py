@@ -115,29 +115,29 @@ if rad == "Home":
         else:
             st.error(">>>>>>>> error in input")
 
-# if rad == "Compare Stock":
-#     st.header("Compare Stocks")
-#     st.write("Add .ns at end if you want indian stocks Eg: TATAMOTORS.NS")
-#     st1, st2 = st.columns(2)
-#     st1 = st1.text_input("Enter 1st stock symbol")
-#     st2 = st2.text_input("Enter 2nd stock symbol")
+if rad == "Compare Stock":
+    st.header("Compare Stocks")
+    st.write("Add .ns at end if you want indian stocks Eg: TATAMOTORS.NS")
+    st1, st2 = st.columns(2)
+    st1 = st1.text_input("Enter 1st stock symbol")
+    st2 = st2.text_input("Enter 2nd stock symbol")
 
-#     if not st1 or not st2:
-#         st.warning('Please Enter a symbols.')
-#         st.stop()
+    if not st1 or not st2:
+        st.warning('Please Enter a symbols.')
+        st.stop()
 
-#     comp = st.button("Compare")
+    comp = st.button("Compare")
 
-#     if st1 and st2 and comp:
-#         st.success('Thank you for input.')
+    if st1 and st2 and comp:
+        st.success('Thank you for input.')
 
-#         tik1, name1 = search_stocks(st1)
-#         tik2, name2 = search_stocks(st2)
-#         if tik1 and tik1:
-#             plot_candlestick(tik1, name1)
-#             plot_candlestick(tik2, name2)
-#         else:
-#             st.waring(">>>>>>>>>>> check your input")
+        tik1, name1 = search_stocks(st1)
+        tik2, name2 = search_stocks(st2)
+        if tik1 and tik1:
+            plot_candlestick(tik1, name1)
+            plot_candlestick(tik2, name2)
+        else:
+            st.waring(">>>>>>>>>>> check your input")
 
 # if rad == "Forecast Stock":
 
